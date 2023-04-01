@@ -66,20 +66,20 @@ const Task = ({ db, handleInsertNode, handleDeleteNode }) => {
 
 	// Method for handle the add Data
 	function handleAddData() {
-		console.log("invoked add method", db.id);
+		// console.log("invoked add method", db.id);
 		handleInsertNode(db.id);
 	}
 
 	// Method for handle the remove Data
 	function handleDeleteData() {
-		console.log("invoked delete method", db.id);
+		// console.log("invoked delete method", db.id);
 		handleDeleteNode(db.id);
 	}
 
 	// Method for handle update Data
 	function handleUpdateData(e) {
-		console.log("update method");
-		console.log(inputValue, inputType);
+		// console.log("update method");
+		// console.log(inputValue, inputType);
 	}
 
 	// tree ui of data list
