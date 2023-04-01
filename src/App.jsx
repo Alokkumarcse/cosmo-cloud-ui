@@ -4,6 +4,7 @@ import "./App.css";
 import useTraverseTree from "./hooks/useTraverseTree";
 import Task from "./components/Task";
 import db from "./dataBase/data.js";
+import Button from "./components/Button";
 
 function App() {
 	const [database, setDatabase] = useState(db);
@@ -29,7 +30,9 @@ function App() {
 					handleInsertNode={handleInsertNode}
 					handleDeleteNode={handleDeleteNode}
 				/>
-				
+			</div>
+			<div className="button-container">
+				<Button database={database}></Button>
 			</div>
 		</div>
 	);
