@@ -1,25 +1,29 @@
 {
-  "name": "cosmo-cloud",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "bootstrap-icons": "^1.10.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "styled-components": "^5.3.9",
-    "uuid": "^9.0.0"
-  },
-  "devDependencies": {
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
-    "@vitejs/plugin-react": "^3.1.0",
-    "react-svg-loader": "^3.0.3",
-    "vite": "^4.2.0"
-  }
+	"homepage": "https://Alokkumarcse.github.io/cosmo-clouds-ui/",
+	"name": "cosmo-cloud",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"predeploy": "rm -rf dist && vite build",
+		"deploy": "gh-pages -d dist"
+	},
+	"dependencies": {
+		"bootstrap-icons": "^1.10.3",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"styled-components": "^5.3.9",
+		"uuid": "^9.0.0"
+	},
+	"devDependencies": {
+		"@types/react": "^18.0.28",
+		"@types/react-dom": "^18.0.11",
+		"@vitejs/plugin-react": "^3.1.0",
+		"gh-pages": "^5.0.0",
+		"react-svg-loader": "^3.0.3",
+		"vite": "^4.2.0"
+	}
 }
