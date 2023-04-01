@@ -1,0 +1,18 @@
+#root {
+	max-width: 1280px;
+	margin: 0 auto;
+}
+
+.app {
+	margin: 0 auto;
+	border: 2px solid lightblue;
+	border-radius: 10px;
+	background-color: rgba(235, 235, 235, 0.534);
+}
+
+.task__container {
+	margin: 20px 30px;
+	background-color: rgb(230, 229, 228);
+	border-radius: 10px;
+	padding: 15px 12px 15px 0;
+}
