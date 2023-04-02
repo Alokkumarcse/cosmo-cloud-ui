@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ToggleButton from "./ToggleButton";
 import styled from "styled-components";
 
@@ -59,13 +59,12 @@ const Span = styled.span`
 	font-weight: 400;
 `;
 
-const Task = ({ db, handleInsertNode, handleDeleteNode }) => {
+const Task = ({ db, handleInsertNode, handleDeleteNode, handleUpdateNode }) => {
 	const [inputValue, setInputValue] = useState(db.name);
 	const [inputType, setInputType] = useState(db.type);
-	const [show, setShow] = useState(false);
 
 	// Method for handle the add Data
-	function handleAddData() {
+	function onAddData() {
 		// console.log("invoked add method", db.id);
 		handleInsertNode(db.id);
 	}
@@ -78,15 +77,17 @@ const Task = ({ db, handleInsertNode, handleDeleteNode }) => {
 
 	// Method for handle update Data
 	function handleSaveChange(e) {
+		// e.preventDefault();
 		if (e.key === "Enter") {
 			console.log(e.key);
-			e.preventDefault();
 			e.target.blur();
-			handleUpdateData();
+			handleUpdateData(inputValue, inputType);
 		}
 	}
-	function handleUpdateData() {
+	function handleUpdateData(inputValue, inputType) {
 		console.log("update method");
+		console.log(db);
+		handleUpdateNode(db.id, inputValue, inputType);
 	}
 
 	// tree ui of data list
@@ -96,7 +97,7 @@ const Task = ({ db, handleInsertNode, handleDeleteNode }) => {
 				{db.id === 1 ? (
 					<Header>
 						<span>Field value and type</span>
-						<Span onClick={() => handleAddData()}>
+						<Span onClick={() => onAddData()}>
 							<i className="bi bi-plus-circle"></i>
 						</Span>
 					</Header>
@@ -115,7 +116,7 @@ const Task = ({ db, handleInsertNode, handleDeleteNode }) => {
 									onChange={(e) => {
 										setInputType(e.target.value);
 										e.target.blur();
-										handleUpdateData();
+										handleUpdateData(inputValue, e.target.value);
 									}}
 								>
 									<option>object</option>
@@ -128,7 +129,7 @@ const Task = ({ db, handleInsertNode, handleDeleteNode }) => {
 								<Buttons>
 									<span>Required</span>
 									<ToggleButton />
-									<Span onClick={() => handleAddData()}>
+									<Span onClick={() => onAddData()}>
 										<i className="bi bi-plus-circle"></i>
 									</Span>
 									<Span onClick={() => handleDeleteData()}>
@@ -140,21 +141,24 @@ const Task = ({ db, handleInsertNode, handleDeleteNode }) => {
 					</Container>
 				)}
 				{/* Recursive rendering Task component to show all nested filed */}
-				{db.items.map((filed) => {
-					return (
-						<Task
-							key={filed.id}
-							db={filed}
-							handleInsertNode={handleInsertNode}
-							handleDeleteNode={handleDeleteNode}
-						/>
-					);
-				})}
+				{db.items.length === 0
+					? null
+					: db.items.map((filed) => {
+							return (
+								<Task
+									key={filed.id}
+									db={filed}
+									handleInsertNode={handleInsertNode}
+									handleDeleteNode={handleDeleteNode}
+									handleUpdateNode={handleUpdateNode}
+								/>
+							);
+					  })}
 			</div>
 		);
 	} else {
 		return (
-			<Wrapper style={{ marginLeft: 20 }} show={show} setShow={setShow}>
+			<Wrapper style={{ marginLeft: 20 }}>
 				<InputContainer>
 					<Input
 						type="text"
@@ -167,7 +171,7 @@ const Task = ({ db, handleInsertNode, handleDeleteNode }) => {
 						onChange={(e) => {
 							setInputType(e.target.value);
 							e.target.blur();
-							handleUpdateData();
+							handleUpdateData(inputValue, e.target.value);
 						}}
 					>
 						<option>object</option>
@@ -176,7 +180,7 @@ const Task = ({ db, handleInsertNode, handleDeleteNode }) => {
 						<option>integer</option>
 					</Select>
 				</InputContainer>
-				<ButtonContainer show={show}>
+				<ButtonContainer>
 					<Buttons>
 						<span>Required</span>
 						<ToggleButton />

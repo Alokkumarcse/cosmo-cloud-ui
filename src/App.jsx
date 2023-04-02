@@ -8,7 +8,7 @@ import Button from "./components/Button";
 
 function App() {
 	const [database, setDatabase] = useState(db);
-	const { insertNode, deleteNode } = useTraverseTree();
+	const { insertNode, deleteNode, updateNode } = useTraverseTree();
 
 	// function for handle node insertion into database
 	function handleInsertNode(id) {
@@ -22,13 +22,23 @@ function App() {
 		setDatabase(newDatabase);
 	}
 
+	// function for handle node updating
+	function handleUpdateNode(id, inputText, inputType) {
+		const newDatabase = updateNode(database, id, inputText, inputType);
+		setDatabase(newDatabase);
+	}
+	console.log("rendered");
+	console.log(database);
+
 	return (
 		<div className="app">
 			<div className="task__container">
 				<Task
 					db={database}
+					setDB={setDatabase}
 					handleInsertNode={handleInsertNode}
 					handleDeleteNode={handleDeleteNode}
+					handleUpdateNode={handleUpdateNode}
 				/>
 			</div>
 			<div className="button-container">

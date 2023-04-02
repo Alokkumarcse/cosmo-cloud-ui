@@ -52,9 +52,56 @@ const useTraverseTree = () => {
 	}
 
 	//update into db tree
-	function updateNode() {}
+	function updateNode(database, id, inputText, inputType) {
+		console.log("update in tree");
+		// console.log(database);
+		// console.log(id);
+		// console.log(inputText, inputType);
+		if (database.type === "object") {
+			let index = database.items.findIndex((item) => item.id === id);
+			if (index !== -1) {
+				// data found at this level
+				let task = database.items.find((item) => item.id === id);
+				let newItems = database.items.filter((item) => item.id !== id);
+				if (inputType === "object") {
+					newItems.splice(index, 0, {
+						...task,
+						name: inputText,
+						type: inputType,
+						items: [],
+					});
+				} else {
+					delete task.items;
+					newItems.splice(index, 0, {
+						...task,
+						name: inputText,
+						type: inputType,
+					});
+				}
+				return { ...database, items: newItems };
+			} else {
+				// go deeper level of tree
+				let latestDatabase = [];
+				latestDatabase = database.items.map((item) => {
+					return updateNode(item, id, inputText, inputType);
+				});
+				return { ...database, items: latestDatabase };
+			}
+		} else {
+			console.log("I am form tree type non object ");
+			console.log(database);
+			return database;
+			// console.log("I am form tree type non object ");
+			// if (inputType === "object") {
+			// 	return { ...database, name: inputText, type: inputType, items: [] };
+			// } else {
+			// 	delete database.items;
+			// 	return { ...database, name: inputText, type: inputType };
+			// }
+		}
+	}
 
-	return { insertNode, deleteNode };
+	return { insertNode, deleteNode, updateNode };
 };
 
 export default useTraverseTree;
