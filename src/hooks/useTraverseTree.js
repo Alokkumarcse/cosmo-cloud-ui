@@ -59,13 +59,14 @@ const useTraverseTree = () => {
 			if (index !== -1) {
 				// data found at this level
 				let task = database.items.find((item) => item.id === id);
+				let taskItems = task.items || [];
 				let newItems = database.items.filter((item) => item.id !== id);
 				if (inputType === "object") {
 					newItems.splice(index, 0, {
 						...task,
 						name: inputText,
 						type: inputType,
-						items: [],
+						items: taskItems,
 					});
 				} else {
 					delete task.items;
