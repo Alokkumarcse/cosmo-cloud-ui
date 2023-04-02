@@ -79,14 +79,14 @@ const Task = ({ db, handleInsertNode, handleDeleteNode, handleUpdateNode }) => {
 	function handleSaveChange(e) {
 		// e.preventDefault();
 		if (e.key === "Enter") {
-			console.log(e.key);
+			// console.log(e.key);
 			e.target.blur();
 			handleUpdateData(inputValue, inputType);
 		}
 	}
 	function handleUpdateData(inputValue, inputType) {
-		console.log("update method");
-		console.log(db);
+		// console.log("update method");
+		// console.log(db);
 		handleUpdateNode(db.id, inputValue, inputType);
 	}
 

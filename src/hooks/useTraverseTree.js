@@ -32,7 +32,7 @@ const useTraverseTree = () => {
 	//delete from db tree
 	function deleteNode(database, id) {
 		if (database.type === "object") {
-			console.log(id);
+			// console.log(id);
 			const newItems = database.items.filter((item) => item.id !== id);
 			if (newItems.length !== database.items.length) {
 				return { ...database, items: newItems };
