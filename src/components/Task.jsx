@@ -77,9 +77,16 @@ const Task = ({ db, handleInsertNode, handleDeleteNode }) => {
 	}
 
 	// Method for handle update Data
-	function handleUpdateData(e) {
-		// console.log("update method");
-		// console.log(inputValue, inputType);
+	function handleSaveChange(e) {
+		if (e.key === "Enter") {
+			console.log(e.key);
+			e.preventDefault();
+			e.target.blur();
+			handleUpdateData();
+		}
+	}
+	function handleUpdateData() {
+		console.log("update method");
 	}
 
 	// tree ui of data list
@@ -100,15 +107,16 @@ const Task = ({ db, handleInsertNode, handleDeleteNode }) => {
 								<Input
 									type="text"
 									value={inputValue}
+									onKeyDown={(e) => handleSaveChange(e)}
 									onChange={(e) => setInputValue(e.target.value)}
-									onFocus={(e) => setInputValue(e.target.value)}
-									onBlur={() => handleUpdateData()}
 								/>
 								<Select
 									value={inputType}
-									onChange={(e) => setInputType(e.target.value)}
-									onFocus={(e) => setInputType(e.target.value)}
-									onBlur={() => handleUpdateData()}
+									onChange={(e) => {
+										setInputType(e.target.value);
+										e.target.blur();
+										handleUpdateData();
+									}}
 								>
 									<option>object</option>
 									<option>string</option>
@@ -151,15 +159,16 @@ const Task = ({ db, handleInsertNode, handleDeleteNode }) => {
 					<Input
 						type="text"
 						value={inputValue}
+						onKeyDown={(e) => handleSaveChange(e)}
 						onChange={(e) => setInputValue(e.target.value)}
-						onFocus={(e) => setInputValue(e.target.value)}
-						onBlur={() => handleUpdateData()}
 					/>
 					<Select
 						value={inputType}
-						onChange={(e) => setInputType(e.target.value)}
-						onFocus={(e) => setInputType(e.target.value)}
-						onBlur={() => handleUpdateData()}
+						onChange={(e) => {
+							setInputType(e.target.value);
+							e.target.blur();
+							handleUpdateData();
+						}}
 					>
 						<option>object</option>
 						<option>string</option>
