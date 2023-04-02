@@ -1,10 +1,16 @@
 import { useState } from "react";
 import "./App.css";
+import styled from "styled-components";
+
+const Container = styled.div`
+	width: 600px;
+`;
 
 import useTraverseTree from "./hooks/useTraverseTree";
 import Task from "./components/Task";
 import db from "./dataBase/data.js";
 import Button from "./components/Button";
+import Navbar from "./components/Navbar";
 
 function App() {
 	const [database, setDatabase] = useState(db);
@@ -32,20 +38,23 @@ function App() {
 	// console.log(database);
 
 	return (
-		<div className="app">
-			<div className="task__container">
-				<Task
-					db={database}
-					setDB={setDatabase}
-					handleInsertNode={handleInsertNode}
-					handleDeleteNode={handleDeleteNode}
-					handleUpdateNode={handleUpdateNode}
-				/>
+		<Container>
+			<Navbar />
+			<div className="app">
+				<div className="task__container">
+					<Task
+						db={database}
+						setDB={setDatabase}
+						handleInsertNode={handleInsertNode}
+						handleDeleteNode={handleDeleteNode}
+						handleUpdateNode={handleUpdateNode}
+					/>
+				</div>
+				<div className="button-container">
+					<Button database={database}></Button>
+				</div>
 			</div>
-			<div className="button-container">
-				<Button database={database}></Button>
-			</div>
-		</div>
+		</Container>
 	);
 }
 

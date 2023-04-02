@@ -46,6 +46,8 @@ const InputContainer = styled.div`
 
 const ButtonContainer = styled.div`
 	flex: 1;
+	display: ${({ show }) => (show ? "flex" : "none")};
+	transition: all 1s ease-in-out;
 `;
 
 const Buttons = styled.div`
@@ -62,6 +64,7 @@ const Span = styled.span`
 const Task = ({ db, handleInsertNode, handleDeleteNode, handleUpdateNode }) => {
 	const [inputValue, setInputValue] = useState(db.name);
 	const [inputType, setInputType] = useState(db.type);
+	const [show, setShow] = useState(false);
 
 	// Method for handle the add Data
 	function onAddData() {
@@ -103,7 +106,10 @@ const Task = ({ db, handleInsertNode, handleDeleteNode, handleUpdateNode }) => {
 					</Header>
 				) : (
 					<Container>
-						<Wrapper>
+						<Wrapper
+							onMouseEnter={() => setShow(true)}
+							onMouseLeave={() => setShow(false)}
+						>
 							<InputContainer>
 								<Input
 									type="text"
@@ -125,7 +131,7 @@ const Task = ({ db, handleInsertNode, handleDeleteNode, handleUpdateNode }) => {
 									<option>integer</option>
 								</Select>
 							</InputContainer>
-							<ButtonContainer>
+							<ButtonContainer show={show}>
 								<Buttons>
 									<span>Required</span>
 									<ToggleButton />
@@ -158,7 +164,11 @@ const Task = ({ db, handleInsertNode, handleDeleteNode, handleUpdateNode }) => {
 		);
 	} else {
 		return (
-			<Wrapper style={{ marginLeft: 20 }}>
+			<Wrapper
+				style={{ marginLeft: 20 }}
+				onMouseEnter={() => setShow(true)}
+				onMouseLeave={() => setShow(false)}
+			>
 				<InputContainer>
 					<Input
 						type="text"
@@ -180,7 +190,7 @@ const Task = ({ db, handleInsertNode, handleDeleteNode, handleUpdateNode }) => {
 						<option>integer</option>
 					</Select>
 				</InputContainer>
-				<ButtonContainer>
+				<ButtonContainer show={show}>
 					<Buttons>
 						<span>Required</span>
 						<ToggleButton />
