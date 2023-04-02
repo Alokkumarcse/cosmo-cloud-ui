@@ -53,10 +53,7 @@ const useTraverseTree = () => {
 
 	//update into db tree
 	function updateNode(database, id, inputText, inputType) {
-		console.log("update in tree");
-		// console.log(database);
-		// console.log(id);
-		// console.log(inputText, inputType);
+		// console.log("update in tree");
 		if (database.type === "object") {
 			let index = database.items.findIndex((item) => item.id === id);
 			if (index !== -1) {
@@ -88,16 +85,9 @@ const useTraverseTree = () => {
 				return { ...database, items: latestDatabase };
 			}
 		} else {
-			console.log("I am form tree type non object ");
-			console.log(database);
-			return database;
 			// console.log("I am form tree type non object ");
-			// if (inputType === "object") {
-			// 	return { ...database, name: inputText, type: inputType, items: [] };
-			// } else {
-			// 	delete database.items;
-			// 	return { ...database, name: inputText, type: inputType };
-			// }
+			// console.log(database);
+			return database;
 		}
 	}
 

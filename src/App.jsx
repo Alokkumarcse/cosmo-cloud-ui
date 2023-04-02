@@ -27,8 +27,9 @@ function App() {
 		const newDatabase = updateNode(database, id, inputText, inputType);
 		setDatabase(newDatabase);
 	}
-	console.log("rendered");
-	console.log(database);
+
+	// console.log("rendered");
+	// console.log(database);
 
 	return (
 		<div className="app">
