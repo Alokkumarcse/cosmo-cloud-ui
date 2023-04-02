@@ -25,17 +25,22 @@ const Wrapper = styled.div`
 	display: flex;
 	gap: 30px;
 	margin-top: 7px;
+	background-color: lightgrey;
+	padding: 5px;
+	border-radius: 3px;
 `;
 
 const Input = styled.input`
-	padding: 3px 0 3px 5px;
+	padding: 5px;
 	font-size: 16px;
+	border: none;
 `;
 
 const Select = styled.select`
 	cursor: pointer;
-	padding: 3px 0 3px 5px;
+	padding: 4.5px;
 	font-size: 16px;
+	border: none;
 `;
 
 const InputContainer = styled.div`

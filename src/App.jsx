@@ -3,7 +3,8 @@ import "./App.css";
 import styled from "styled-components";
 
 const Container = styled.div`
-	width: 600px;
+	min-width: 700px;
+	width: auto;
 `;
 
 import useTraverseTree from "./hooks/useTraverseTree";
